@@ -44,8 +44,9 @@
             </div>
             <div class="riddle__audio-box">
               <div class="riddle__audio-wrap singing">
-                <audio src="" class="riddle__audio"></audio>
-
+                <label for="riddle__audio" class="audio__box">
+                  <audio src="" class="riddle__audio"></audio>
+                </label>
                 <div class="riddle__audio-info singing__box">
                   <button class="riddle__audio-play play-btn">
                     <svg class="riddle__play-img play-img" viewBox="-200 0 1200 1000">
@@ -55,7 +56,8 @@
                     </svg>
                   </button>
                   <div class="singing__inner-box">
-                    <input type="range" class="riddle__audio-track singing-track">
+                    <input type="range" id="riddle__audio" class="riddle__audio-track singing-track" min="0" value="0"
+                      max="10">
                     <div class="riddle__volume-wrap singing__volume-wrap"><input type="range"
                         class="riddle__volume singing__volume">
                     </div>
@@ -73,12 +75,6 @@
       </div>
       <div class="game">
         <ul class="game__items">
-          <li class="game__item"><span class="game__item-text">Ворон</span></li>
-          <li class="game__item"><span class="game__item-text">Журавль</span></li>
-          <li class="game__item"><span class="game__item-text">Ласточка</span></li>
-          <li class="game__item"><span class="game__item-text">Козодой</span></li>
-          <li class="game__item"><span class="game__item-text">Кукушка</span></li>
-          <li class="game__item"><span class="game__item-text">Синица</span></li>
         </ul>
         <div class="game__bird-info">
           <div class="game__bird-promo">
@@ -107,9 +103,9 @@
                   </div>
                 </div>
               </div>
-              <div class="singing__time">
-                <span class="game__current-time singing__current-time">00:00</span>
-                <span class="game__total-time singing__total-time">00:00</span>
+              <div class="singing__time game__time-box">
+                <span class="game__time game__current-time singing__current-time">00:00</span>
+                <span class="game__time game__total-time singing__total-time">00:00</span>
               </div>
             </div>
           </div>

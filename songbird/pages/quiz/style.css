@@ -1,6 +1,7 @@
 .body-quiz{
   background-color: #000;
   color: #fff;
+  padding-bottom: 30px;
 }
 
 .header{
@@ -91,7 +92,7 @@
 .game{
   display: flex;
   justify-content: space-between;
-  
+  margin-bottom: 30px;
 }
 
 .game__items{
@@ -169,7 +170,8 @@
 
 .game__bird-text{
   font-size: 21px;
-  line-height: 27px;
+  line-height: 28px;
+  letter-spacing: 1px;
 }
 
 .game__bird-title{
@@ -185,5 +187,40 @@
 }
 
 .game__audio-info{
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.game__time-box{
+  padding-left: 70px;
+}
+
+.game__time{
+  font-size: 18px;
+}
+
+.btn-next{
+  padding: 10px 0;
+  background-color: #007c5d;
+  display: block;
+  width: 100%;
+  color: #fff;
+  font-size: 21px;
+  border-radius: 15px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  border: 1px solid #000;
+  text-align: center;
+  transition: background-color 0.5s;
+}
+
+.btn-next:hover{
+  background-color: #006149;
+}
+
+.btn-next_disabled{
+  background-color: rgb(68, 68, 68);
+}
+
+.btn-next_disabled:hover{
+  background-color: rgb(68, 68, 68);
 }
