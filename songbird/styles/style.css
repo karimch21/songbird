@@ -11,44 +11,6 @@
     flex: 1 0 auto;
 }
 
-.header {
-    background-color: #000;
-    padding: 20px 0;
-}
-
-.nav-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header__logo {
-    margin-right: 10px;
-}
-
-.logo__img {
-    max-width: 200px;
-}
-
-.menu-box__items {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.menu-box__item+.menu-box__item {
-    margin-left: 20px;
-}
-
-.menu-box__link {
-    color: #fff;
-    font-size: 24px;
-    transition: color 0.5s;
-}
-
-.menu-box__link:hover {
-    color: rgb(150, 150, 150);
-}
 
 .promo {
     height: 100vh;

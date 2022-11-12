@@ -1,3 +1,3 @@
-import birdsData from '../assets/bd/birds.js'
+import birdsData from '../../assets/bd/birds.js'
 
 console.log(birdsData)

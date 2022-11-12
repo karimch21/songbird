@@ -1,0 +1,189 @@
+.body-quiz{
+  background-color: #000;
+  color: #fff;
+}
+
+.header{
+  margin-bottom: 10px;
+}
+
+.score{
+  color: #fff;
+}
+.pagination{
+  margin-bottom: 30px;
+}
+.pagination__items{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pagination__item{
+  padding: 10px 5px;
+  font-size: 21px;
+  font-weight: 400;
+  background-color: #008966;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+.pagination__item:hover{
+  background-color: #00bc8c;
+}
+.pagination__item:first-of-type{
+  border-radius: 50px 0 0 50px;
+}
+.pagination__item:last-of-type{
+  border-radius: 0px 50px 50px 0px;
+}
+.pagination__item + .pagination__item{
+  border-left: 1px solid #007c5d;
+}
+
+.pagination__item_active{
+  background-color: #00bc8c;
+}
+
+.riddle{
+  padding: 25px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  background-color: #303030;
+}
+
+.riddle__inner{
+  display: flex;
+  align-items: center;
+}
+
+.riddle__img-box{
+  border-radius: 20px;
+  margin-right: 40px;
+  max-width: 400px;
+  height: 220px;
+  overflow: hidden;
+  width: 100%;
+}
+.riddle__img{
+  width: 100%;
+  object-fit: cover;
+}
+
+.riddle__info{
+  width: 100%;
+}
+
+.riddle__title{
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #555;
+  font-size: 35px;
+}
+.riddle__audio-info{
+  margin-bottom: 20px;
+}
+.game__audio-play {
+  margin-right: 20px;
+}
+
+.game{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.game__items{
+  width: 40%;
+  margin-right: 20px;
+}
+
+.game__item{
+  padding: 0.85rem 1.25rem;
+  padding-left: 70px;
+  border: 1px solid #555;
+  background-color: #303030;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.5s;
+}
+
+.game__item::before{
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: silver;
+  border-radius: 100%;
+  position: absolute;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.5s;
+}
+
+.game__item:hover{
+  background-color: #202020;
+}
+.game__item:hover::before{
+  background-color: #7c7c7c;
+}
+
+.game__item:first-of-type{
+  border-radius: 15px 15px 0 0;
+}
+
+.game__item:last-of-type{
+  border-radius: 0px 0px 15px 15px;
+}
+
+.game__bird-info{
+  padding: 20px;
+  width: 60%;
+  border: 1px solid #555;
+  background-color: #303030;
+  border-radius: 15px;
+}
+.game__bird-promo{
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: space-between;
+}
+.game__bird-box{
+  margin-right: 20px;
+  overflow: hidden;
+  max-width: 400px;
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+}
+
+.game__bird-img{
+  width: 100%;
+  object-fit: cover;
+}
+
+.game__bird-content{
+  width: 100%;
+}
+
+.game__bird-text{
+  font-size: 21px;
+  line-height: 27px;
+}
+
+.game__bird-title{
+  font-size: 35px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #555;
+}
+
+.game__bird-title_en{
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.game__audio-info{
+  margin-bottom: 15px;
+}

@@ -1,15 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="../../assets/styles/global.css">
+  <link rel="stylesheet" href="./style.css">
   <title>SongBird</title>
 </head>
-<body>
-  
-  <script src="assets/bd/birds.js" type="module"></script>
-  <script src="js/index.js" type="module"></script>
+
+<body class="body-quiz">
+  <header class="header">
+    <div class="container header__inner nav-wrap">
+      <div class="header__logo logo">
+        <a href="../../index.html" class="header__logo-link logo__link"><img src="../../assets/icon/logo.svg" alt=""
+            class="header__logo-img logo__img"></a>
+      </div>
+      <div class="header__score score">Score: <span class="header__score-num score__num">0</span></div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="container">
+      <div class="pagination">
+        <ul class="pagination__items">
+          <li class="pagination__item">Разминка</li>
+          <li class="pagination__item pagination__item_active">Воробьиные</li>
+          <li class="pagination__item">Лесные птицы</li>
+          <li class="pagination__item">Певчие птицы</li>
+          <li class="pagination__item">Хищные птицы</li>
+          <li class="pagination__item">Морские птицы</li>
+          <li class="pagination__item">Ласточка</li>
+        </ul>
+      </div>
+      <div class="riddle">
+        <div class="riddle__inner">
+          <div class="riddle__img-box">
+            <img src="../../assets/image/nonameBird.jpg" alt="" class="riddle__img">
+          </div>
+          <div class="riddle__info">
+            <div class="riddle__title">
+              ******
+            </div>
+            <div class="riddle__audio-box">
+              <div class="riddle__audio-wrap singing">
+                <audio src="" class="riddle__audio"></audio>
+
+                <div class="riddle__audio-info singing__box">
+                  <button class="riddle__audio-play play-btn">
+                    <svg class="riddle__play-img play-img" viewBox="-200 0 1200 1000">
+                      <path fill="#00bc8c"
+                        d="M96.51 11.97c-31.23 8.05-53.26 32.76-63.42 71.27-3.45 12.84-3.64 29.7-3.64 416.71s.19 403.87 3.64 416.71c16.09 60.74 61.69 86.03 120.9 67.25 9-2.87 53.65-25.1 116.49-58.24 56.14-29.51 221.29-116.3 367.28-192.93 145.99-76.64 271.29-143.31 278.38-148.1 39.28-25.68 59.59-63.04 53.26-97.52-4.79-26.63-24.33-53.07-52.88-71.65C892 399.37 172.58 22.32 154.95 16.38c-18.97-6.33-43.3-8.24-58.44-4.41z">
+                      </path>
+                    </svg>
+                  </button>
+                  <div class="singing__inner-box">
+                    <input type="range" class="riddle__audio-track singing-track">
+                    <div class="riddle__volume-wrap singing__volume-wrap"><input type="range"
+                        class="riddle__volume singing__volume">
+                    </div>
+                  </div>
+                </div>
+                <div class="singing__time">
+                  <span class="riddle__current-time singing__current-time">00:00</span>
+                  <span class="riddle__total-time singing__total-time">00:00</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="game">
+        <ul class="game__items">
+          <li class="game__item"><span class="game__item-text">Ворон</span></li>
+          <li class="game__item"><span class="game__item-text">Журавль</span></li>
+          <li class="game__item"><span class="game__item-text">Ласточка</span></li>
+          <li class="game__item"><span class="game__item-text">Козодой</span></li>
+          <li class="game__item"><span class="game__item-text">Кукушка</span></li>
+          <li class="game__item"><span class="game__item-text">Синица</span></li>
+        </ul>
+        <div class="game__bird-info">
+          <div class="game__bird-promo">
+            <div class="game__bird-box">
+              <img src="../../assets/image/nonameBird.jpg" alt="" class="game__bird-img">
+            </div>
+            <div class="game__bird-content">
+              <div class="game__bird-title">
+                Синица
+              </div>
+              <div class="game__bird-title game__bird-title_en">
+                Parus major
+              </div>
+              <div class="game__audio-info singing__box">
+                <button class="game__audio-play play-btn">
+                  <svg class="game__play-img play-img" viewBox="-200 0 1200 1000">
+                    <path fill="#00bc8c"
+                      d="M96.51 11.97c-31.23 8.05-53.26 32.76-63.42 71.27-3.45 12.84-3.64 29.7-3.64 416.71s.19 403.87 3.64 416.71c16.09 60.74 61.69 86.03 120.9 67.25 9-2.87 53.65-25.1 116.49-58.24 56.14-29.51 221.29-116.3 367.28-192.93 145.99-76.64 271.29-143.31 278.38-148.1 39.28-25.68 59.59-63.04 53.26-97.52-4.79-26.63-24.33-53.07-52.88-71.65C892 399.37 172.58 22.32 154.95 16.38c-18.97-6.33-43.3-8.24-58.44-4.41z">
+                    </path>
+                  </svg>
+                </button>
+                <div class="singing__inner-box">
+                  <input type="range" class="game__audio-track singing-track">
+                  <div class="game__volume-wrap singing__volume-wrap"><input type="range"
+                      class="game__volume singing__volume">
+                  </div>
+                </div>
+              </div>
+              <div class="singing__time">
+                <span class="game__current-time singing__current-time">00:00</span>
+                <span class="game__total-time singing__total-time">00:00</span>
+              </div>
+            </div>
+          </div>
+          <p class="game__bird-text">
+            В щебетании синиц различают более 40 различных звуковых сочетаний. Поют они практически круглый год,
+            немного
+            затихая только зимой. Синицы настоящие санитары леса. Одна пара синиц в период гнездования оберегает от
+            вредителей десятки деревьев.
+          </p>
+        </div>
+      </div>
+      <button class="btn-next btn">Next level</button>
+    </div>
+  </main>
+  <script src="./index.js" type="module"></script>
 </body>
+
 </html>

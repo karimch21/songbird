@@ -1,62 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles/global.css">
-    <link rel="stylesheet" href="styles/style.css">
-    <title>SongBird</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/styles/global.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <title>SongBird</title>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="main-content">
-            <header class="header">
-                <div class="container header__inner nav-wrap">
-                    <div class="header__logo logo">
-                        <a href="#" class="header__logo-link logo__link"><img src="./assets/icon/logo.svg" alt="" class="header__logo-img logo__img"></a>
-                    </div>
-                    <nav class="header__menu menu-box">
-                        <ul class="header__menu-items menu-box__items">
-                            <li class="header__menu-item menu-box__item"><a href="#" class="header__menu-link menu-box__link">Главная</a></li>
-                            <li class="header__menu-item menu-box__item"><a href="#" class="header__menu-link menu-box__link">Играть</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-            <div class="promo">
-                <video src="./assets/video/short.mp4" class="promo__video" muted autoplay poster="./assets/image/posterPromoVideo.png"></video>
-            </div>
+  <div class="wrapper">
+    <div class="main-content">
+      <header class="header">
+        <div class="container header__inner nav-wrap">
+          <div class="header__logo logo">
+            <a href="./index.html" class="header__logo-link logo__link"><img src="./assets/icon/logo.svg" alt=""
+                class="header__logo-img logo__img"></a>
+          </div>
+          <nav class="header__menu menu-box">
+            <ul class="header__menu-items menu-box__items">
+              <li class="header__menu-item menu-box__item"><a href="./index.html"
+                  class="header__menu-link menu-box__link">Главная</a></li>
+              <li class="header__menu-item menu-box__item"><a href="./pages/quiz/index.html"
+                  class="header__menu-link menu-box__link">Играть</a>
+              </li>
+            </ul>
+          </nav>
         </div>
-        <footer class="footer">
-            <div class="container footer__inner info-author">
-                <ul class="footer__info info-author__box">
-                    <a href="#" class="footer__info-git footer__info-author"><img src="./assets/icon/git.svg" alt="" class="footer__git-img"></a>
-                    <p class="footer__info-year info-author__year">2022г.</p>
-                    <a href="#" class="footer__info-course footer__info-author"><img src="./assets/icon/rs.svg" alt="" class="footer__course-img"></a>
-                </ul>
-            </div>
-        </footer>
-        <div class="welcome-block">
-            <div class="welcome-block__inner">
-                <h2 class="welcome-block__title">Привествуем в игре угадай птицу!</h2>
-                <div class="welcome-block__info">
-                    <h3 class="welcome-block__info-title">
-                        О игре:
-                    </h3>
-                    <p class="welcome-block__text">Угдать птицу по звуку. Узнать некоторые факты о ней</p>
-                </div>
-
-                <a href="#" class="welcome-block__btn btn">
-                  Начать игру
-                </a>
-            </div>
-        </div>
+      </header>
+      <div class="promo">
+        <video src="./assets/video/short.mp4" class="promo__video" muted autoplay
+          poster="./assets/image/posterPromoVideo.png"></video>
+      </div>
     </div>
-    <script src="js/index.js" type="module"></script>
+    <footer class="footer">
+      <div class="container footer__inner info-author">
+        <ul class="footer__info info-author__box">
+          <a href="#" class="footer__info-git footer__info-author"><img src="./assets/icon/git.svg" alt=""
+              class="footer__git-img"></a>
+          <p class="footer__info-year info-author__year">2022г.</p>
+          <a href="#" class="footer__info-course footer__info-author"><img src="./assets/icon/rs.svg" alt=""
+              class="footer__course-img"></a>
+        </ul>
+      </div>
+    </footer>
+    <div class="welcome-block">
+      <div class="welcome-block__inner">
+        <h2 class="welcome-block__title">Привествуем в игре угадай птицу!</h2>
+        <div class="welcome-block__info">
+          <h3 class="welcome-block__info-title">
+            О игре:
+          </h3>
+          <p class="welcome-block__text">
+            Угдать птицу по звуку. Узнать некоторые факты о ней
+          </p>
+        </div>
+        <a href="./pages/quiz/index.html" class="welcome-block__btn btn">
+          Начать игру
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="js/index.js" type="module"></script>
 </body>
 
 </html>
