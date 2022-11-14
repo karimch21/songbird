@@ -85,6 +85,38 @@
 .riddle__audio-info{
   margin-bottom: 20px;
 }
+
+.riddle-audio-wrapper-disabled{
+  position: relative;  
+}
+.riddle-audio-wrapper-disabled::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 101%;
+  height: 101%;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.589);
+  overflow: hidden;
+}
+.riddle-audio-wrapper-disabled::before{
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  background-image: url(../../assets/gif/loader.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.riddle-audio-wrapper-disabled_off::before,
+.riddle-audio-wrapper-disabled_off::after{
+  display: none;
+}
+
 .game__audio-play {
   margin-right: 20px;
 }
