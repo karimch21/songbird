@@ -1,6 +1,7 @@
-import birdGuessed from '../quiz/index.js'
+import birdGuessed, { appendBirdsList, birdGuessing } from '../quiz/index.js'
 let gameItemsBox = document.querySelector('.game');
 let scoreBlock = document.querySelector('.score span');
+let btnNext = document.querySelector('.btn-next');
 let gameCount = 0;
 let score = 0;
 let totalScore = 0;
@@ -9,6 +10,13 @@ let penaltyPoints = 0;
 gameItemsBox.addEventListener('click', (e) => {
   gameClickHandler(e);
 });
+
+btnNext.addEventListener('click', jumpNextQuestion)
+
+console.log(birdGuessed)
+// window.addEventListener('load', () =>{
+//   appendBirdsList(birdGuessed)
+// })
 
 function gameClickHandler(e) {
   let gameItem = e.target.closest('.game__item');
@@ -84,6 +92,7 @@ function checkGuessedBird(bird, gameItem) {
     appendInfoGuessedBirdCard(bird)
     addActiveClassBirdItem(gameItem)
     scoring()
+    moveNextLevel()
   }
   else {
     addErrorClassBirdItem(gameItem)
@@ -114,4 +123,36 @@ function appendInfoGuessedBirdCard(bird) {
   let riddleImg = document.querySelector('.riddle__img');
   riddleTitle.textContent = bird.name;
   riddleImg.src = bird.image;
+}
+
+function moveNextLevel() {
+  deleteClassDisabled()
+}
+
+function deleteClassDisabled() {
+  btnNext.classList.remove('btn-next_disabled');
+  if (gameCount == birdGuessed.length - 1) return
+  gameCount++;
+}
+
+function jumpNextQuestion() {
+  if (!btnNext.classList.contains('btn-next_disabled')) {
+    updateContent()
+    btnNext.classList.add('btn-next_disabled')
+  }
+}
+
+function updateContent() {
+  console.log(gameCount)
+  birdGuessing(birdGuessed, gameCount);
+  appendBirdsList(birdGuessed, gameCount);
+  showCurrentNameQuestion()
+}
+
+function showCurrentNameQuestion() {
+  let questions = document.querySelectorAll('.pagination__item');
+  questions.forEach(quest => {
+    quest.classList.remove('pagination__item_active');
+  });
+  questions[gameCount].classList.add('pagination__item_active');
 }

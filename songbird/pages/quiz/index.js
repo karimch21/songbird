@@ -6,9 +6,10 @@ let riddleAudioDecorated = defeniteAudioDecorated(riddleAudio);
 let gameCount = 0;
 let riddleBlockMinute = 0;
 let riddleBlockSeconds = 0;
-let birdGuessed = birdGuessing(birdsData);
+let birdGuessed = birdGuessing(birdsData, gameCount);
 
-export default birdGuessed
+export { birdGuessed as default, appendBirdsList, birdGuessing }
+
 
 window.addEventListener('load', windowLoadHandler);
 riddleBtnPlay.addEventListener('click', (e) => {
@@ -32,11 +33,11 @@ riddleAudio.addEventListener('ended', () => {
 });
 
 function windowLoadHandler() {
-  appendBirdsList()
+  appendBirdsList(birdsData, gameCount)
   addAudioSingingGuessBird(riddleAudio, birdGuessed)
 }
 
-function birdGuessing(birdsData) {
+function birdGuessing(birdsData, gameCount) {
   birdsData[gameCount].forEach(birds => {
     birds.guess = false;
   });
@@ -49,10 +50,10 @@ function generateRandomNum(min, max) {
   return Math.floor(min + Math.random() * (max - min + 1));
 }
 
-function createListBirds() {
+function createListBirds(birdsData) {
   let birdsList = document.createDocumentFragment();
-  for (let i = 0; i < birdsData[gameCount].length; i++) {
-    let bird = birdsData[gameCount][i];
+  for (let i = 0; i < birdsData.length; i++) {
+    let bird = birdsData[i];
 
     let birdItem = document.createElement('li');
     let birdName = document.createElement('span');
@@ -68,13 +69,12 @@ function createListBirds() {
   return birdsList;
 }
 
-function appendBirdsList() {
+function appendBirdsList(birdsData, gameCount) {
   clearBirdsListItems()
   let birdsListItems = document.querySelector('.game__items');
-  let birdsItem = createListBirds();
+  let birdsItem = createListBirds(birdsData[gameCount]);
   if (!birdsListItems) return;
   birdsListItems.appendChild(birdsItem);
-  birdsListItems.dataset.gameCount = gameCount;
 }
 
 function clearBirdsListItems() {
