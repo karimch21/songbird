@@ -6,6 +6,9 @@ let riddleAudioDecorated = defeniteAudioDecorated(riddleAudio);
 let gameCount = 0;
 let riddleBlockMinute = 0;
 let riddleBlockSeconds = 0;
+let birdGuessed = birdGuessing(birdsData);
+
+export default birdGuessed
 
 window.addEventListener('load', windowLoadHandler);
 riddleBtnPlay.addEventListener('click', (e) => {
@@ -27,14 +30,11 @@ riddleAudio.addEventListener('timeupdate', (e) => {
 riddleAudio.addEventListener('ended', () => {
   endAudioHandler(riddleBtnPlay)
 });
-birdGuessing(birdsData)
 
 function windowLoadHandler() {
   appendBirdsList()
-  addAudioSingingGuessBird(riddleAudio, birdsData)
+  addAudioSingingGuessBird(riddleAudio, birdGuessed)
 }
-
-console.log(birdsData)
 
 function birdGuessing(birdsData) {
   birdsData[gameCount].forEach(birds => {
@@ -42,6 +42,7 @@ function birdGuessing(birdsData) {
   });
   let randomNum = generateRandomNum(0, birdsData[gameCount].length - 1);
   birdsData[gameCount][randomNum].guess = true;
+  return birdsData
 }
 
 function generateRandomNum(min, max) {
@@ -59,6 +60,7 @@ function createListBirds() {
     birdItem.classList.add('game__item');
     birdName.classList.add('game__item-text');
 
+    birdItem.dataset.id = bird.id;
     birdName.textContent = bird.name;
     birdItem.appendChild(birdName);
     birdsList.appendChild(birdItem);
@@ -72,6 +74,7 @@ function appendBirdsList() {
   let birdsItem = createListBirds();
   if (!birdsListItems) return;
   birdsListItems.appendChild(birdsItem);
+  birdsListItems.dataset.gameCount = gameCount;
 }
 
 function clearBirdsListItems() {
@@ -98,11 +101,9 @@ function riddleOffLoaderAduio() {
 function switchPlaySinginBird(audio, btnPlay) {
   btnPlay.classList.toggle('play-btn_pause');
   if (btnPlay.classList.contains('play-btn_pause') && audio.paused) {
-    console.log('click')
     playSinginBird(audio, btnPlay)
     setIconPlayAudio(btnPlay)
   } else {
-    console.log('c')
     stopSinginBird(audio)
     setIconPauseAudio(btnPlay)
   }
@@ -142,7 +143,6 @@ function defeniteAudioDecorated(audio) {
 function playSinginBirdHandler(audio) {
   let audioDecorated = defeniteAudioDecorated(audio);
   let currentTime = Math.ceil(audio.currentTime);
-  console.log(currentTime)
   audioDecorated.value = currentTime;
 }
 

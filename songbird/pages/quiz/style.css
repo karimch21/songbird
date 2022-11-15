@@ -155,11 +155,26 @@
   transition: background-color 0.5s;
 }
 
+.game__item_active::before{
+  background-color: rgb(18, 211, 0);
+}
+
+.game__item_err::before{
+  background-color: rgb(211, 0, 0);
+}
+
 .game__item:hover{
   background-color: #202020;
 }
 .game__item:hover::before{
   background-color: #7c7c7c;
+}
+.game__item_err:hover::before{
+  background-color: rgb(211, 0, 0);
+}
+
+.game__item_active:hover::before{
+  background-color: rgb(18, 211, 0);
 }
 
 .game__item:first-of-type{
