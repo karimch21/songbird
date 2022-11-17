@@ -1,4 +1,4 @@
-import birdGuessed, { appendBirdsList, birdGuessing } from '../quiz/index.js'
+import birdGuessed, { appendBirdsList, birdGuessing, Player } from '../quiz/index.js'
 let gameItemsBox = document.querySelector('.game');
 let scoreBlock = document.querySelector('.score span');
 let btnNext = document.querySelector('.btn-next');
@@ -6,17 +6,15 @@ let gameCount = 0;
 let score = 0;
 let totalScore = 0;
 let penaltyPoints = 0;
+let audioPlayer = new Player();
+let riddleBlockMinute = 0;
+let riddleBlockSeconds = 0;
+console.log(audioPlayer)
 
 gameItemsBox.addEventListener('click', (e) => {
   gameClickHandler(e);
 });
-
 btnNext.addEventListener('click', jumpNextQuestion)
-
-console.log(birdGuessed)
-// window.addEventListener('load', () =>{
-//   appendBirdsList(birdGuessed)
-// })
 
 function gameClickHandler(e) {
   let gameItem = e.target.closest('.game__item');
@@ -24,7 +22,7 @@ function gameClickHandler(e) {
     let gameItemId = gameItem.dataset.id - 1;
     let bird = birdGuessed[gameCount][gameItemId];
     let birdCard = createCardBird(bird);
-    console.log(bird)
+    console.log(bird, gameCount)
     appendBirdCard(birdCard)
     checkGuessedBird(bird, gameItem);
   }
@@ -131,22 +129,26 @@ function moveNextLevel() {
 
 function deleteClassDisabled() {
   btnNext.classList.remove('btn-next_disabled');
-  if (gameCount == birdGuessed.length - 1) return
-  gameCount++;
+
 }
 
 function jumpNextQuestion() {
   if (!btnNext.classList.contains('btn-next_disabled')) {
+    if (gameCount == birdGuessed.length - 1) return
+    gameCount++;
     updateContent()
     btnNext.classList.add('btn-next_disabled')
   }
 }
 
 function updateContent() {
-  console.log(gameCount)
   birdGuessing(birdGuessed, gameCount);
   appendBirdsList(birdGuessed, gameCount);
   showCurrentNameQuestion()
+  clearCardBird()
+  updateRiddleAudioTime();
+  returnRiddleBlockDefaultView();
+  updateRiddleAudio()
 }
 
 function showCurrentNameQuestion() {
@@ -155,4 +157,101 @@ function showCurrentNameQuestion() {
     quest.classList.remove('pagination__item_active');
   });
   questions[gameCount].classList.add('pagination__item_active');
+}
+
+function clearCardBird() {
+  let gameBirdInfo = document.querySelector('.game__bird-info');
+  if (!gameBirdInfo) return
+  let gameBirdPlug = document.createElement('p');
+  gameBirdPlug.classList.add('game__bird-plug');
+  gameBirdPlug.textContent = 'Послушайте плеер. Выберите птицу из списка'
+  gameBirdInfo.innerHTML = '';
+  gameBirdInfo.appendChild(gameBirdPlug);
+}
+
+function returnRiddleBlockDefaultView() {
+  let riddle = document.querySelector('.riddle');
+  if (!riddle) return
+  riddle.innerHTML = `
+    <div class="riddle__inner">
+          <div class="riddle__img-box">
+            <img src="../../assets/image/nonameBird.jpg" alt="" class="riddle__img">
+          </div>
+          <div class="riddle__info">
+            <div class="riddle__title">
+              ******
+            </div>
+            <div class="riddle__audio-box riddle-audio-wrapper-disabled">
+              <div class="riddle__audio-wrap singing">
+                <label for="riddle__audio" class="audio__box">
+                  <audio src="" class="riddle__audio"></audio>
+                </label>
+                <div class="riddle__audio-info singing__box">
+                  <button class="riddle__audio-play play-btn">
+                    <svg class="riddle__play-img play-img" viewBox="-200 0 1200 1000">
+                      <path fill="#00bc8c"
+                        d="M96.51 11.97c-31.23 8.05-53.26 32.76-63.42 71.27-3.45 12.84-3.64 29.7-3.64 416.71s.19 403.87 3.64 416.71c16.09 60.74 61.69 86.03 120.9 67.25 9-2.87 53.65-25.1 116.49-58.24 56.14-29.51 221.29-116.3 367.28-192.93 145.99-76.64 271.29-143.31 278.38-148.1 39.28-25.68 59.59-63.04 53.26-97.52-4.79-26.63-24.33-53.07-52.88-71.65C892 399.37 172.58 22.32 154.95 16.38c-18.97-6.33-43.3-8.24-58.44-4.41z">
+                      </path>
+                    </svg>
+                  </button>
+                  <div class="singing__inner-box">
+                    <input type="range" id="riddle__audio" class="riddle__audio-track singing-track" min="0" value="0"
+                      max="10">
+                    <div class="riddle__volume-wrap singing__volume-wrap"><input type="range"
+                        class="riddle__volume singing__volume">
+                    </div>
+                  </div>
+                </div>
+                <div class="singing__time">
+                  <span class="riddle__current-time singing__current-time">00:00</span>
+                  <span class="riddle__total-time singing__total-time">00:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
+
+}
+
+function updateRiddleAudio() {
+  let riddleAudio = document.querySelector('.riddle__audio');
+  let riddleBtnPlay = document.querySelector('.riddle__audio-play');
+  let riddleAudioDecorated = audioPlayer.defeniteAudioDecorated(riddleAudio);
+
+
+  if (!riddleAudio) return
+  riddleAudio.addEventListener('canplay', () => {
+    audioPlayer.riddleOffLoaderAduio()
+    let audioDecorated = audioPlayer.defeniteAudioDecorated(riddleAudio);
+    audioDecorated.max = Math.ceil(riddleAudio.duration)
+  });
+  audioPlayer.addAudioSingingGuessBird(riddleAudio, birdGuessed, gameCount)
+
+  riddleBtnPlay.addEventListener('click', (e) => {
+    audioPlayer.switchPlaySinginBird(riddleAudio, riddleBtnPlay)
+  })
+
+  riddleAudioDecorated.addEventListener('input', () => {
+    let audioDecorated = audioPlayer.defeniteAudioDecorated(riddleAudio);
+    audioPlayer.movingRiddleAudioDecorated(riddleAudio, audioDecorated)
+  })
+
+  riddleAudio.addEventListener('timeupdate', (e) => {
+    audioPlayer.playSinginBirdHandler(riddleAudio)
+    audioPlayer.showRiddleAudioCurrentTime(riddleAudio, riddleBlockMinute, riddleBlockSeconds)
+  });
+
+  riddleAudio.addEventListener('ended', () => {
+    audioPlayer.endAudioHandler(riddleBtnPlay)
+  });
+  console.log(riddleAudio.currentTime, riddleBlockMinute, riddleBlockSeconds)
+}
+
+function updateRiddleAudioTime() {
+  let audio = document.querySelector('.riddle__audio');
+  if (!audio) return
+  audio.currentTime = 0;
+  riddleBlockMinute = 0
+  riddleBlockSeconds = 0
 }

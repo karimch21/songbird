@@ -7,8 +7,77 @@ let gameCount = 0;
 let riddleBlockMinute = 0;
 let riddleBlockSeconds = 0;
 let birdGuessed = birdGuessing(birdsData, gameCount);
+class Player {
+  constructor() {
 
-export { birdGuessed as default, appendBirdsList, birdGuessing }
+  }
+  addAudioSingingGuessBird(riddleAudio, birdsData, gameCount) {
+    if (!riddleAudio) return
+    birdsData[gameCount].forEach(bird => {
+      if (bird.guess) {
+        riddleAudio.src = bird.audio;
+      }
+    });
+  }
+  riddleOffLoaderAduio() {
+    const audioWrapper = document.querySelector('.riddle-audio-wrapper-disabled');
+    if (!audioWrapper) return
+    audioWrapper.classList.add('riddle-audio-wrapper-disabled_off')
+  }
+  switchPlaySinginBird(audio, btnPlay) {
+    btnPlay.classList.toggle('play-btn_pause');
+    if (btnPlay.classList.contains('play-btn_pause') && audio.paused) {
+      playSinginBird(audio, btnPlay)
+      setIconPlayAudio(btnPlay)
+    } else {
+      stopSinginBird(audio)
+      setIconPauseAudio(btnPlay)
+    }
+  }
+  setIconPlayAudio(btnPlay) {
+    btnPlay.innerHTML = '<svg viewBox="0 0 47.607 47.607"><path fill="#00bc8c" d="M17.991 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345zM42.877 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345z"></path></svg>'
+  }
+  playSinginBird(audio, btnPlay) {
+    audio.play()
+  }
+  movingRiddleAudioDecorated(audio, audioDecorated) {
+    audio.currentTime = audioDecorated.value;
+    audioDecorated.value = audioDecorated.value;
+  }
+  endAudioHandler(btnPlay) {
+    btnPlay.classList.remove('play-btn_pause')
+    setIconPauseAudio(btnPlay)
+  }
+  defeniteAudioDecorated(audio) {
+    let audioBox = audio.parentElement;
+    if (!audioBox && !audioBox.hasAttribute('for')) return
+    let audioBoxLink = audioBox.getAttribute('for')
+    let audioDecorated = document.querySelector(`#${audioBoxLink}`);
+    if (!audioDecorated) return
+    return audioDecorated;
+  }
+  playSinginBirdHandler(audio) {
+    let audioDecorated = defeniteAudioDecorated(audio);
+    let currentTime = Math.ceil(audio.currentTime);
+    audioDecorated.value = currentTime;
+  }
+  stopSinginBird(audio) {
+    audio.pause()
+  }
+  showRiddleAudioCurrentTime(audio, riddleBlockMinute, riddleBlockSeconds) {
+    console.log(audio.currentTime, riddleBlockMinute, riddleBlockSeconds)
+    let boxCurrentTime = document.querySelector('.riddle__current-time');
+    if (!boxCurrentTime) return
+
+    riddleBlockMinute = Math.floor(audio.currentTime / 60)
+    riddleBlockSeconds = Math.ceil(((audio.currentTime / 60) - riddleBlockMinute) * 60)
+
+    boxCurrentTime.textContent = `${('0' + riddleBlockMinute).slice(-2)}:${('0' + riddleBlockSeconds).slice(-2)}`
+  }
+}
+
+setIconPauseAudio(riddleBtnPlay)
+export { birdGuessed as default, appendBirdsList, birdGuessing, Player }
 
 
 window.addEventListener('load', windowLoadHandler);
@@ -32,9 +101,11 @@ riddleAudio.addEventListener('ended', () => {
   endAudioHandler(riddleBtnPlay)
 });
 
+
+
 function windowLoadHandler() {
   appendBirdsList(birdsData, gameCount)
-  addAudioSingingGuessBird(riddleAudio, birdGuessed)
+  addAudioSingingGuessBird(riddleAudio, birdGuessed, gameCount)
 }
 
 function birdGuessing(birdsData, gameCount) {
@@ -83,7 +154,7 @@ function clearBirdsListItems() {
   birdsListItems.innerHTML = '';
 }
 
-function addAudioSingingGuessBird(riddleAudio, birdsData) {
+function addAudioSingingGuessBird(riddleAudio, birdsData, gameCount) {
   if (!riddleAudio) return
   birdsData[gameCount].forEach(bird => {
     if (bird.guess) {
