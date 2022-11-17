@@ -25,7 +25,8 @@ function gameClickHandler(e) {
     let bird = birdGuessed[gameCount][gameItemId];
     let birdCard = createCardBird(bird);
     console.log(bird, gameCount)
-    appendBirdCard(birdCard)
+    appendBirdCard(birdCard);
+    addHandlersGameAudioElements()
     checkGuessedBird(bird, gameItem);
   }
 }
@@ -44,6 +45,12 @@ function createCardBird(bird) {
               <div class="game__bird-title game__bird-title_en">
                 ${bird.species}
               </div>
+
+              <div class="game__audio-box audio-wrapper-disabled">
+              <div class="game__audio-wrap singing">
+                <label for="game__audio" class="audio__box">
+                  <audio src="${bird.audio}" class="game__audio"></audio>
+                </label>
               <div class="game__audio-info singing__box">
                 <button class="game__audio-play play-btn">
                   <svg class="game__play-img play-img" viewBox="-200 0 1200 1000">
@@ -51,16 +58,24 @@ function createCardBird(bird) {
                     </path>
                   </svg>
                 </button>
-                <div class="singing__inner-box">
-                  <input type="range" class="game__audio-track singing-track">
-                  <div class="game__volume-wrap singing__volume-wrap"><input type="range" class="game__volume singing__volume">
+
+                  <div class="singing__inner-box">
+                    <input type="range" id="game__audio" class="game__audio-track singing-track" min="0" value="0" max="10">
+                    <div class="game__volume-wrap singing__volume-wrap">
+                      <input type="range" class="game__volume singing__volume">
+                    </div>
                   </div>
                 </div>
+
+                <div class="singing__time game__time-box">
+                  <span class="game__time game__current-time singing__current-time">00:00</span>
+                  <span class="game__time game__total-time singing__total-time">00:00</span>
+                </div>
+
               </div>
-              <div class="singing__time game__time-box">
-                <span class="game__time game__current-time singing__current-time">00:00</span>
-                <span class="game__time game__total-time singing__total-time">00:00</span>
-              </div>
+            </div>
+
+
             </div>
           </div>
           <p class="game__bird-text">
@@ -267,4 +282,27 @@ function updateTotalTimeRiddleAudio(audio, elemTotalTime) {
   let totalSeconds = Math.ceil(((audio.duration / 60) - totalMinute) * 60);
   if (!audio.duration) return
   elemTotalTime.textContent = `${('0' + totalMinute).slice(-2)}:${('0' + totalSeconds).slice(-2)}`;
+}
+
+function addHandlersGameAudioElements() {
+  let btnPlay = document.querySelector('.game__audio-play');
+  let audio = document.querySelector('.game__audio');
+  if (!audio && btnPlay) return
+  btnPlay.addEventListener('click', () => {
+    gamePlayBtnHanlder(audio, btnPlay)
+  });
+  audio.addEventListener('canplay', () => {
+    const audioWrapper = document.querySelector('.game__audio-box');
+    audioPlayer.riddleOffLoaderAduio(audioWrapper)
+    let audioDecorated = audioPlayer.defeniteAudioDecorated(audio);
+    audioDecorated.max = Math.ceil(audio.duration)
+  });
+  audio.addEventListener('ended', () => {
+    audioPlayer.endAudioHandler(btnPlay)
+  });
+}
+
+function gamePlayBtnHanlder(audio, btnPlay) {
+  console.log(45678)
+  audioPlayer.switchPlaySinginBird(audio, btnPlay);
 }

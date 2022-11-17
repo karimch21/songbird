@@ -18,10 +18,9 @@ class Player {
       }
     });
   }
-  riddleOffLoaderAduio() {
-    const audioWrapper = document.querySelector('.riddle-audio-wrapper-disabled');
+  riddleOffLoaderAduio(audioWrapper) {
     if (!audioWrapper) return
-    audioWrapper.classList.add('riddle-audio-wrapper-disabled_off')
+    audioWrapper.classList.add('audio-wrapper-disabled_off')
   }
   switchPlaySinginBird(audio, btnPlay) {
     btnPlay.classList.toggle('play-btn_pause');
@@ -102,7 +101,8 @@ riddleAudioDecorated.addEventListener('input', () => {
   riddleAudioPlayer.movingRiddleAudioDecorated(riddleAudio, audioDecorated)
 })
 riddleAudio.addEventListener('canplay', () => {
-  riddleAudioPlayer.riddleOffLoaderAduio()
+  const audioWrapper = document.querySelector('.riddle__audio-box');
+  riddleAudioPlayer.riddleOffLoaderAduio(audioWrapper)
   let audioDecorated = riddleAudioPlayer.defeniteAudioDecorated(riddleAudio);
   audioDecorated.max = Math.ceil(riddleAudio.duration)
 });
