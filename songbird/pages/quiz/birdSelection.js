@@ -9,6 +9,8 @@ let penaltyPoints = 0;
 let audioPlayer = new Player();
 let riddleBlockMinute = 0;
 let riddleBlockSeconds = 0;
+let totalSeconds = 0;
+let totalMinute = 0;
 console.log(audioPlayer)
 
 gameItemsBox.addEventListener('click', (e) => {
@@ -224,7 +226,8 @@ function updateRiddleAudio() {
   riddleAudio.addEventListener('canplay', () => {
     audioPlayer.riddleOffLoaderAduio()
     let audioDecorated = audioPlayer.defeniteAudioDecorated(riddleAudio);
-    audioDecorated.max = Math.ceil(riddleAudio.duration)
+    audioDecorated.max = Math.ceil(riddleAudio.duration);
+    updateTotalTimeRiddleAudio(riddleAudio, document.querySelector('.riddle__total-time'))
   });
   audioPlayer.addAudioSingingGuessBird(riddleAudio, birdGuessed, gameCount)
 
@@ -239,7 +242,7 @@ function updateRiddleAudio() {
 
   riddleAudio.addEventListener('timeupdate', (e) => {
     audioPlayer.playSinginBirdHandler(riddleAudio)
-    audioPlayer.showRiddleAudioCurrentTime(riddleAudio, riddleBlockMinute, riddleBlockSeconds)
+    audioPlayer.showRiddleAudioCurrentTime(riddleAudio, riddleBlockMinute, riddleBlockSeconds, totalMinute, totalSeconds)
   });
 
   riddleAudio.addEventListener('ended', () => {
@@ -254,4 +257,14 @@ function updateRiddleAudioTime() {
   audio.currentTime = 0;
   riddleBlockMinute = 0
   riddleBlockSeconds = 0
+  totalSeconds = 0;
+  totalMinute = 0;
+}
+
+function updateTotalTimeRiddleAudio(audio, elemTotalTime) {
+  if (!elemTotalTime) return
+  let totalMinute = Math.floor(audio.duration / 60);
+  let totalSeconds = Math.ceil(((audio.duration / 60) - totalMinute) * 60);
+  if (!audio.duration) return
+  elemTotalTime.textContent = `${('0' + totalMinute).slice(-2)}:${('0' + totalSeconds).slice(-2)}`;
 }

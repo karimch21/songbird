@@ -6,6 +6,8 @@ const riddleBtnPlay = document.querySelector('.riddle__audio-play');
 let gameCount = 0;
 let riddleBlockMinute = 0;
 let riddleBlockSeconds = 0;
+let totalSeconds = 0;
+let totalMinute = 0;
 let birdGuessed = birdGuessing(birdsData, gameCount);
 class Player {
   addAudioSingingGuessBird(riddleAudio, birdsData, gameCount) {
@@ -64,14 +66,25 @@ class Player {
   stopSinginBird(audio) {
     audio.pause()
   }
-  showRiddleAudioCurrentTime(audio, riddleBlockMinute, riddleBlockSeconds) {
-    console.log(audio.currentTime, riddleBlockMinute, riddleBlockSeconds)
+  showRiddleAudioCurrentTime(audio, riddleBlockMinute, riddleBlockSeconds, totalMinute, totalSeconds) {
+
     let boxCurrentTime = document.querySelector('.riddle__current-time');
-    if (!boxCurrentTime) return
+    let riddleTotalTime = document.querySelector('.riddle__total-time');
+
+    if (!boxCurrentTime && !riddleTotalTime) return
 
     riddleBlockMinute = Math.floor(audio.currentTime / 60)
     riddleBlockSeconds = Math.ceil(((audio.currentTime / 60) - riddleBlockMinute) * 60)
+    if (audio.duration) {
+      totalMinute = Math.floor(audio.duration / 60);
+      totalSeconds = Math.ceil(((audio.duration / 60) - totalMinute) * 60);
+    }
+    else {
+      totalMinute = 0
+      totalSeconds = 0
+    }
 
+    riddleTotalTime.textContent = `${('0' + totalMinute).slice(-2)}:${('0' + totalSeconds).slice(-2)}`;
     boxCurrentTime.textContent = `${('0' + riddleBlockMinute).slice(-2)}:${('0' + riddleBlockSeconds).slice(-2)}`
   }
 }
@@ -95,7 +108,7 @@ riddleAudio.addEventListener('canplay', () => {
 });
 riddleAudio.addEventListener('timeupdate', (e) => {
   riddleAudioPlayer.playSinginBirdHandler(riddleAudio)
-  riddleAudioPlayer.showRiddleAudioCurrentTime(riddleAudio)
+  riddleAudioPlayer.showRiddleAudioCurrentTime(riddleAudio, riddleBlockMinute, riddleBlockSeconds, totalMinute, totalSeconds)
 });
 riddleAudio.addEventListener('ended', () => {
   riddleAudioPlayer.endAudioHandler(riddleBtnPlay)
