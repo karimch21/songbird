@@ -13,6 +13,7 @@ let gameBlockMinute = 0;
 let gameBlockSeconds = 0;
 let totalSeconds = 0;
 let totalMinute = 0;
+let birdActiveCount = 0;
 console.log(audioPlayer)
 
 gameItemsBox.addEventListener('click', (e) => {
@@ -96,12 +97,15 @@ function appendBirdCard(cardBird) {
 function scoring() {
   let allGameItem = document.querySelectorAll('.game__item_err');
   let gameItemActive = document.querySelector('.game__item_active');
-
-  if (allGameItem.length === 6) {
-    scoreBlock.textContent = 0;
-  }
-  else {
-    scoreBlock.textContent = 5 - allGameItem.length
+  birdActiveCount++;
+  if (birdActiveCount <= 1) {
+    if (allGameItem.length === 6) {
+      scoreBlock.textContent = 0;
+    }
+    else {
+      totalScore += 5 - allGameItem.length
+      scoreBlock.textContent = totalScore
+    }
   }
 }
 function checkGuessedBird(bird, gameItem) {
@@ -161,6 +165,7 @@ function jumpNextQuestion() {
 }
 
 function updateContent() {
+  birdActiveCount = 0;
   birdGuessing(birdGuessed, gameCount);
   appendBirdsList(birdGuessed, gameCount);
   showCurrentNameQuestion()
