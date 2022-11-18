@@ -2,7 +2,8 @@ import birdsData from '../../assets/bd/birds.js'
 const gameElement = document.querySelector('.game');
 const riddleAudio = document.querySelector('.riddle__audio');
 const riddleBtnPlay = document.querySelector('.riddle__audio-play');
-
+let riddleBoxCurrentTime = document.querySelector('.riddle__current-time');
+let riddleBoxTotalTime = document.querySelector('.riddle__total-time');
 let gameCount = 0;
 let riddleBlockMinute = 0;
 let riddleBlockSeconds = 0;
@@ -65,12 +66,12 @@ class Player {
   stopSinginBird(audio) {
     audio.pause()
   }
-  showRiddleAudioCurrentTime(audio, riddleBlockMinute, riddleBlockSeconds, totalMinute, totalSeconds) {
+  showRiddleAudioCurrentTime(audio, riddleBlockMinute, riddleBlockSeconds, totalMinute, totalSeconds, boxCurrentTime, boxTotalTime) {
 
-    let boxCurrentTime = document.querySelector('.riddle__current-time');
-    let riddleTotalTime = document.querySelector('.riddle__total-time');
+    // let boxCurrentTime = document.querySelector('.riddle__current-time');
+    // let boxTotalTime = document.querySelector('.riddle__total-time');
 
-    if (!boxCurrentTime && !riddleTotalTime) return
+    if (!boxCurrentTime && !boxTotalTime) return
 
     riddleBlockMinute = Math.floor(audio.currentTime / 60)
     riddleBlockSeconds = Math.ceil(((audio.currentTime / 60) - riddleBlockMinute) * 60)
@@ -83,7 +84,7 @@ class Player {
       totalSeconds = 0
     }
 
-    riddleTotalTime.textContent = `${('0' + totalMinute).slice(-2)}:${('0' + totalSeconds).slice(-2)}`;
+    boxTotalTime.textContent = `${('0' + totalMinute).slice(-2)}:${('0' + totalSeconds).slice(-2)}`;
     boxCurrentTime.textContent = `${('0' + riddleBlockMinute).slice(-2)}:${('0' + riddleBlockSeconds).slice(-2)}`
   }
 }
@@ -108,7 +109,7 @@ riddleAudio.addEventListener('canplay', () => {
 });
 riddleAudio.addEventListener('timeupdate', (e) => {
   riddleAudioPlayer.playSinginBirdHandler(riddleAudio)
-  riddleAudioPlayer.showRiddleAudioCurrentTime(riddleAudio, riddleBlockMinute, riddleBlockSeconds, totalMinute, totalSeconds)
+  riddleAudioPlayer.showRiddleAudioCurrentTime(riddleAudio, riddleBlockMinute, riddleBlockSeconds, totalMinute, totalSeconds, riddleBoxCurrentTime, riddleBoxTotalTime)
 });
 riddleAudio.addEventListener('ended', () => {
   riddleAudioPlayer.endAudioHandler(riddleBtnPlay)

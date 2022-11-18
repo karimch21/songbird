@@ -235,7 +235,8 @@ function updateRiddleAudio() {
   let riddleAudio = document.querySelector('.riddle__audio');
   let riddleBtnPlay = document.querySelector('.riddle__audio-play');
   let riddleAudioDecorated = audioPlayer.defeniteAudioDecorated(riddleAudio);
-
+  let riddleBoxCurrentTime = document.querySelector('.riddle__current-time');
+  let riddleBoxTotalTime = document.querySelector('.riddle__total-time');
 
   if (!riddleAudio) return
   riddleAudio.addEventListener('canplay', () => {
@@ -257,7 +258,7 @@ function updateRiddleAudio() {
 
   riddleAudio.addEventListener('timeupdate', (e) => {
     audioPlayer.playSinginBirdHandler(riddleAudio)
-    audioPlayer.showRiddleAudioCurrentTime(riddleAudio, riddleBlockMinute, riddleBlockSeconds, totalMinute, totalSeconds)
+    audioPlayer.showRiddleAudioCurrentTime(riddleAudio, riddleBlockMinute, riddleBlockSeconds, totalMinute, totalSeconds, riddleBoxCurrentTime, riddleBoxTotalTime)
   });
 
   riddleAudio.addEventListener('ended', () => {
