@@ -16,6 +16,10 @@ let totalMinute = 0;
 let birdActiveCount = 0;
 console.log(audioPlayer)
 
+window.addEventListener('load', () => {
+  appendSoundIndication();
+});
+
 gameItemsBox.addEventListener('click', (e) => {
   gameClickHandler(e);
 });
@@ -109,14 +113,19 @@ function scoring() {
   }
 }
 function checkGuessedBird(bird, gameItem) {
+  let soundIndiocationCorrect = document.querySelector('.sound-indication_correct');
+  let soundIndiocationError = document.querySelector('.sound-indication_error');
+
   if (bird.guess) {
     appendInfoGuessedBirdCard(bird)
     addActiveClassBirdItem(gameItem)
     scoring()
     moveNextLevel()
+    playSoundIndication(soundIndiocationCorrect)
   }
   else {
     addErrorClassBirdItem(gameItem)
+    playSoundIndication(soundIndiocationError)
   }
 }
 function addErrorClassBirdItem(birdItem) {
@@ -324,4 +333,37 @@ function addHandlersGameAudioElements() {
 function gamePlayBtnHanlder(audio, btnPlay) {
   console.log(45678)
   audioPlayer.switchPlaySinginBird(audio, btnPlay);
+}
+
+function createSoundIndicationError() {
+  let soundIndiocation = document.createElement('audio');
+  soundIndiocation.classList.add('sound-indication', 'sound-indication_error');
+  soundIndiocation.src = '../../assets/audio/error.mp3';
+  return soundIndiocation;
+}
+
+function createSoundIndicationCorrect() {
+  let soundIndiocation = document.createElement('audio');
+  soundIndiocation.classList.add('sound-indication', 'sound-indication_correct');
+  soundIndiocation.src = '../../assets/audio/right.mp3';
+  return soundIndiocation;
+}
+
+function appendSoundIndication() {
+  let soundIndiocationCorrect = createSoundIndicationCorrect();
+  let soundIndiocationError = createSoundIndicationError();
+  document.body.appendChild(soundIndiocationCorrect);
+  document.body.appendChild(soundIndiocationError);
+}
+
+function playSoundIndication(soundIndiocation) {
+  if (!soundIndiocation) return
+  if (soundIndiocation.paused) {
+    soundIndiocation.play();
+  }
+  else {
+    soundIndiocation.pause();
+    soundIndiocation.currentTime = 0;
+    soundIndiocation.play();
+  }
 }
