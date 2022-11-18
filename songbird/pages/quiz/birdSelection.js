@@ -9,6 +9,8 @@ let penaltyPoints = 0;
 let audioPlayer = new Player();
 let riddleBlockMinute = 0;
 let riddleBlockSeconds = 0;
+let gameBlockMinute = 0;
+let gameBlockSeconds = 0;
 let totalSeconds = 0;
 let totalMinute = 0;
 console.log(audioPlayer)
@@ -288,10 +290,21 @@ function updateTotalTimeRiddleAudio(audio, elemTotalTime) {
 function addHandlersGameAudioElements() {
   let btnPlay = document.querySelector('.game__audio-play');
   let audio = document.querySelector('.game__audio');
+  let gameBoxCurrentTime = document.querySelector('.game__current-time');
+  let gameBoxTotalTime = document.querySelector('.game__total-time');
+  let gameAudioDecorated = audioPlayer.defeniteAudioDecorated(audio);
+  console.log(gameBoxCurrentTime, gameBoxTotalTime)
   if (!audio && btnPlay) return
   btnPlay.addEventListener('click', () => {
     gamePlayBtnHanlder(audio, btnPlay)
   });
+  audio.addEventListener('timeupdate', (e) => {
+    audioPlayer.playSinginBirdHandler(audio)
+    audioPlayer.showRiddleAudioCurrentTime(audio, gameBlockMinute, gameBlockSeconds, totalMinute, totalSeconds, gameBoxCurrentTime, gameBoxTotalTime)
+  });
+  gameAudioDecorated.addEventListener('input', () => {
+    audioPlayer.movingRiddleAudioDecorated(audio, gameAudioDecorated)
+  })
   audio.addEventListener('canplay', () => {
     const audioWrapper = document.querySelector('.game__audio-box');
     audioPlayer.riddleOffLoaderAduio(audioWrapper)
