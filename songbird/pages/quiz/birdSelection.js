@@ -370,7 +370,6 @@ function playSoundIndication(soundIndiocation) {
   }
 }
 
-
 function showResult() {
   let amountQuestions = document.querySelectorAll('.pagination__item').length - 1;
   let resultBlock = createResultBlock();
@@ -412,3 +411,4 @@ function createResultBlock() {
 
   return resultWrap;
 }
+
