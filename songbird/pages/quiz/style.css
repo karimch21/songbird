@@ -268,3 +268,39 @@
 .btn-next_disabled:hover{
   background-color: rgb(68, 68, 68);
 }
+
+.result__body{
+  padding: 50px 20px;
+  background-color: #303030;
+  border-radius: 0.3rem;
+  text-align: center;
+}
+.result__title{
+  margin-bottom: 35px;
+  font-size: 58px;
+  font-weight: 400;
+}
+.result__text{
+  margin-bottom: 80px;
+  font-size: 28px;
+}
+.result__btn{
+  color: #fff;
+  border-radius: 10px;
+  background-color: #007c5d;
+  display: block;
+  width: 100%;
+  color: #fff;
+  font-size: 31px;
+  border-radius: 15px;
+  transition: background 0.5s;
+}
+
+.result__btn:hover{
+  background-color: #006149;
+}
+
+.link-reset{
+  padding: 25px 0;
+  display: block;
+}

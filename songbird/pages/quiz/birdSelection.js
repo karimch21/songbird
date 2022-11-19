@@ -2,6 +2,7 @@ import birdGuessed, { appendBirdsList, birdGuessing, Player } from '../quiz/inde
 let gameItemsBox = document.querySelector('.game');
 let scoreBlock = document.querySelector('.score span');
 let btnNext = document.querySelector('.btn-next');
+let resultSrc = '../result/index.html'
 let gameCount = 0;
 let score = 0;
 let totalScore = 0;
@@ -122,6 +123,7 @@ function checkGuessedBird(bird, gameItem) {
     scoring()
     moveNextLevel()
     playSoundIndication(soundIndiocationCorrect)
+    showResult();
   }
   else {
     addErrorClassBirdItem(gameItem)
@@ -366,4 +368,47 @@ function playSoundIndication(soundIndiocation) {
     soundIndiocation.currentTime = 0;
     soundIndiocation.play();
   }
+}
+
+
+function showResult() {
+  let amountQuestions = document.querySelectorAll('.pagination__item').length - 1;
+  let resultBlock = createResultBlock();
+
+  if (gameCount === amountQuestions) {
+    let main = document.querySelector('.main');
+    setTimeout(() => {
+      main.innerHTML = '';
+      main.appendChild(resultBlock);
+    }, 2000);
+  }
+}
+
+function createResultBlock() {
+  let resultWrap = document.createElement('div');
+  let resultBody = document.createElement('div');
+  let resultTitle = document.createElement('h2');
+  let resultText = document.createElement('p');
+  let resultBtn = document.createElement('button');
+  let linkReset = document.createElement('a');
+
+  resultWrap.classList.add('result', 'reult-wrapper');
+  resultBody.classList.add('result__body', 'container');
+  resultTitle.classList.add('result__title');
+  resultText.classList.add('result__text');
+  resultBtn.classList.add('result__btn');
+  linkReset.classList.add('link-reset');
+
+  resultTitle.textContent = 'Поздравляем!'
+  resultText.textContent = `Вы прошли викторину и набрали ${totalScore} из 30 возможных баллов`;
+  linkReset.textContent = 'Попробовать еще раз';
+  linkReset.href = './index.html';
+
+  resultWrap.appendChild(resultBody);
+  resultBody.appendChild(resultTitle);
+  resultBody.appendChild(resultText);
+  resultBtn.appendChild(linkReset)
+  resultBody.appendChild(resultBtn);
+
+  return resultWrap;
 }
