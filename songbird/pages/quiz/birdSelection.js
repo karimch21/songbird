@@ -233,7 +233,7 @@ function returnRiddleBlockDefaultView() {
                     <input type="range" id="riddle__audio" class="riddle__audio-track singing-track" min="0" value="0"
                       max="10">
                     <div class="riddle__volume-wrap singing__volume-wrap"><input type="range"
-                        class="riddle__volume singing__volume">
+                        class="riddle__volume singing__volume" min="0" max="100" value="50">
                     </div>
                   </div>
                 </div>
@@ -255,6 +255,7 @@ function updateRiddleAudio() {
   let riddleAudioDecorated = audioPlayer.defeniteAudioDecorated(riddleAudio);
   let riddleBoxCurrentTime = document.querySelector('.riddle__current-time');
   let riddleBoxTotalTime = document.querySelector('.riddle__total-time');
+  let riddleAudioVolume = document.querySelector('.riddle__volume');
 
   if (!riddleAudio) return
   riddleAudio.addEventListener('canplay', () => {
@@ -281,6 +282,11 @@ function updateRiddleAudio() {
 
   riddleAudio.addEventListener('ended', () => {
     audioPlayer.endAudioHandler(riddleBtnPlay)
+  });
+
+  riddleAudioVolume.addEventListener('input', () => {
+    let songVolume = riddleAudioVolume.value;
+    audioPlayer.settingVolume(riddleAudio, songVolume);
   });
   console.log(riddleAudio.currentTime, riddleBlockMinute, riddleBlockSeconds)
 }
