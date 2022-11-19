@@ -1,0 +1,149 @@
+@media (max-width: 1200px){
+  .pagination, .riddle,.game {
+    margin-bottom: 10px;
+  }
+  .pagination__items {
+    flex-wrap: wrap;
+  }
+  .pagination__item:first-of-type,
+  .pagination__item:last-of-type,
+  .pagination__item {
+    border-radius: 50px;
+  }
+  .pagination__item{
+    margin-bottom: 10px;
+  }
+  .pagination__item {
+    width: 49%;
+  }
+  .game__bird-promo {
+    margin-bottom: 25px;
+    display: block;
+  }
+  .game__bird-box {
+    margin-right: 0;
+    margin-bottom: 10px;
+    max-width: 100%;
+  }
+  .riddle{
+    padding: 20px;
+  }
+  .game__bird-info {
+    padding: 20px;
+  }
+  .game__bird-text {
+    font-size: 18px;
+    line-height: 23px;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 900px){
+  .riddle {
+    padding: 10px;
+}
+  .riddle__inner {
+    flex-wrap: wrap;
+  }
+  .riddle__img-box {
+    margin-bottom: 10px;
+    margin-right: 0;
+    max-width: 100%;
+    height: 300px;
+  }
+  .game {
+    display: block;
+  }
+  .game__items {
+    margin-bottom: 10px;
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .game__item {
+    width: 49%;
+    display: flex;
+    align-items: center;
+  }
+  .game__bird-plug {
+    font-size: 16px;
+  }
+  .game__item:first-of-type, .game__item:last-of-type, .game__item {
+    border-radius: 10px;
+  }
+  .game__item{
+    margin-bottom: 10px;
+  }
+  .game__bird-info {
+    padding: 10px;
+    width: 100%;
+  }
+  .game__bird-box {
+    height: 290px;
+  }
+}
+
+@media (max-width: 500px){
+  .riddle__img-box {
+    height: 210px;
+}
+.game__item {
+  padding: 10px;
+  padding-left: 45px;
+  font-size: 18px;
+}
+.game__item::before {
+  left: 18px;
+  width: 15px;
+    height: 15px;
+}
+.singing__time {
+  font-size: 18px;
+}
+.riddle__audio-info {
+  margin-bottom: 15px;
+}
+
+}
+
+@media (max-width: 400px){
+  .game__bird-title {
+    padding-bottom: 5px;
+    font-size: 25px;
+  }
+  .game__bird-title_en{
+    font-size: 18px;
+  }
+  .game__bird-box {
+    height: 200px;
+  }
+  .game__item {
+    padding-left: 35px;
+    font-size: 16px;
+  }
+  .game__item::before {
+    left: 11px;
+  }
+  .pagination__item {
+    font-size: 18px;
+  }
+  .play-btn {
+    margin-right: 10px;
+    height: 35px;
+    min-width: 35px;
+  }
+  .singing__time, .game__time {
+    font-size: 16px;
+  }
+  .riddle__title {
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+  .game__bird-text {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
