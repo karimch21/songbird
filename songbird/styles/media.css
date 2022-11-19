@@ -1,0 +1,27 @@
+@media (max-width: 500px){
+  .welcome-block__info {
+    display: block;
+  } 
+}
+
+@media (max-width: 360px){
+  .welcome-block__inner {
+    padding: 10px;
+  }
+  .menu-box__link {
+    font-size: 16px;
+  }
+  .logo__img {
+    max-width: 120px;
+  } 
+  .info-author__year {
+    font-size: 16px;
+  }
+  .footer__course-img {
+    width: 75px;
+    height: 25px;
+  }
+  .footer__git-img {
+    height: 35px;
+  }
+}

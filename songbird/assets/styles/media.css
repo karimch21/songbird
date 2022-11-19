@@ -1,0 +1,46 @@
+@media (max-width: 500px){
+  .header{
+    padding-bottom: 5px;
+  }
+  .footer{
+    padding-top: 5px;
+  }
+  .menu-box__link {
+    font-size: 18px;
+  }
+  .logo__img {
+    max-width: 137px;
+  }
+  .footer__course-img {
+    width: 85px;
+    height: 30px;
+  }
+  .info-author__year {
+    font-size: 20px;
+  }
+  .footer__git-img {
+    height: 40px;
+  }
+  .menu-box__item+.menu-box__item {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 360px){
+  .menu-box__link {
+    font-size: 16px;
+  }
+  .logo__img {
+    max-width: 120px;
+  } 
+  .info-author__year {
+    font-size: 16px;
+  }
+  .footer__course-img {
+    width: 75px;
+    height: 25px;
+  }
+  .footer__git-img {
+    height: 35px;
+  }
+}

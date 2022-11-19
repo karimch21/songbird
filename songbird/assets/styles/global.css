@@ -57,6 +57,7 @@ img{
 
 .header__logo {
   margin-right: 10px;
+  font-size: 0;
 }
 
 .logo__img {
