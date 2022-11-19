@@ -88,27 +88,40 @@
 @media (max-width: 500px){
   .riddle__img-box {
     height: 210px;
-}
-.game__item {
-  padding: 10px;
-  padding-left: 45px;
-  font-size: 18px;
-}
-.game__item::before {
-  left: 18px;
-  width: 15px;
-    height: 15px;
-}
-.singing__time {
-  font-size: 18px;
-}
-.riddle__audio-info {
-  margin-bottom: 15px;
-}
-
+  }
+  .game__item {
+    padding: 10px;
+    padding-left: 45px;
+    font-size: 18px;
+  }
+  .game__item::before {
+    left: 18px;
+    width: 15px;
+      height: 15px;
+  }
+  .singing__time {
+    font-size: 18px;
+  }
+  .riddle__audio-info {
+    margin-bottom: 15px;
+  }
+  .result__title {
+    font-size: 31px;
+  }
+  .result__text {
+    margin-bottom: 40px;
+    font-size: 18px;
+  }
+  .link-reset {
+    padding: 10px 0;
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 400px){
+  .result__body {
+    padding: 40px 10px;
+  }
   .game__bird-title {
     padding-bottom: 5px;
     font-size: 25px;
