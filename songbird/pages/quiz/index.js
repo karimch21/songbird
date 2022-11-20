@@ -21,6 +21,7 @@ class Player {
     });
   }
   riddleOffLoaderAduio(audioWrapper) {
+    alert('work')
     if (!audioWrapper) return
     audioWrapper.classList.add('audio-wrapper-disabled_off')
   }
