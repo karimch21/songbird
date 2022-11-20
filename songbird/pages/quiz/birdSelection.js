@@ -339,6 +339,7 @@ function addHandlersGameAudioElements() {
   });
   if (gameVolume) {
     gameVolume.addEventListener('input', () => {
+      console.log(gameVolume.value)
       let songVolume = gameVolume.value;
       audioPlayer.settingVolume(audio, songVolume);
     })
