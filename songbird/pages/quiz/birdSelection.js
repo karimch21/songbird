@@ -315,6 +315,7 @@ function addHandlersGameAudioElements() {
   let gameBoxCurrentTime = document.querySelector('.game__current-time');
   let gameBoxTotalTime = document.querySelector('.game__total-time');
   let gameAudioDecorated = audioPlayer.defeniteAudioDecorated(audio);
+  let gameVolume = document.querySelector('.game__volume')
   console.log(gameBoxCurrentTime, gameBoxTotalTime)
   if (!audio && btnPlay) return
   btnPlay.addEventListener('click', () => {
@@ -336,6 +337,12 @@ function addHandlersGameAudioElements() {
   audio.addEventListener('ended', () => {
     audioPlayer.endAudioHandler(btnPlay)
   });
+  if (gameVolume) {
+    gameVolume.addEventListener('input', () => {
+      let songVolume = gameVolume.value;
+      audioPlayer.settingVolume(audio, songVolume);
+    })
+  }
 }
 
 function gamePlayBtnHanlder(audio, btnPlay) {

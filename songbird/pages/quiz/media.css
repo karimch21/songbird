@@ -67,9 +67,6 @@
     display: flex;
     align-items: center;
   }
-  .game__bird-plug {
-    font-size: 16px;
-  }
   .game__item:first-of-type, .game__item:last-of-type, .game__item {
     border-radius: 10px;
   }
@@ -127,6 +124,9 @@
   .link-reset {
     padding: 10px 0;
     font-size: 18px;
+  }
+  .game__bird-plug {
+    font-size: 16px;
   }
 }
 
