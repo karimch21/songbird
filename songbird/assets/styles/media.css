@@ -1,10 +1,4 @@
 @media (max-width: 500px){
-  .header{
-    padding-bottom: 5px;
-  }
-  .footer{
-    padding-top: 5px;
-  }
   .menu-box__link {
     font-size: 18px;
   }
