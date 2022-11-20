@@ -1,9 +1,15 @@
+@media (max-width: 650px){
+  .header, .footer{
+    padding: 10px;
+  }
+}
 @media (max-width: 500px){
   .menu-box__link {
     font-size: 18px;
   }
   .logo__img {
     max-width: 137px;
+    overflow: hidden;
   }
   .footer__course-img {
     width: 85px;

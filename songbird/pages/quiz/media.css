@@ -85,6 +85,18 @@
   }
 }
 
+@media (max-width: 650px){
+  .header, .footer{
+    padding: 10px;
+  }
+  .header {
+    margin-bottom: 5px;
+  }
+  .score{
+    font-size: 18px;
+  }
+}
+
 @media (max-width: 500px){
   .riddle__img-box {
     height: 210px;
