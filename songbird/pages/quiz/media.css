@@ -3,7 +3,8 @@
     margin-bottom: 10px;
   }
   .pagination__items {
-    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .pagination__item:first-of-type,
   .pagination__item:last-of-type,
@@ -43,7 +44,8 @@
     padding: 10px;
 }
   .riddle__inner {
-    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .riddle__img-box {
     margin-bottom: 10px;
@@ -58,14 +60,23 @@
     margin-bottom: 10px;
     width: 100%;
     margin-right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
   .game__item {
     width: 49%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .game__item:first-of-type, .game__item:last-of-type, .game__item {
     border-radius: 10px;
