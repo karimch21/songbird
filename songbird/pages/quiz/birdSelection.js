@@ -15,7 +15,7 @@ let gameBlockSeconds = 0;
 let totalSeconds = 0;
 let totalMinute = 0;
 let birdActiveCount = 0;
-console.log(audioPlayer)
+
 
 window.addEventListener('load', () => {
   appendSoundIndication();
@@ -32,7 +32,7 @@ function gameClickHandler(e) {
     let gameItemId = gameItem.dataset.id - 1;
     let bird = birdGuessed[gameCount][gameItemId];
     let birdCard = createCardBird(bird);
-    console.log(bird, gameCount)
+    
     appendBirdCard(birdCard);
     addHandlersGameAudioElements()
     checkGuessedBird(bird, gameItem);
@@ -288,7 +288,7 @@ function updateRiddleAudio() {
     let songVolume = riddleAudioVolume.value;
     audioPlayer.settingVolume(riddleAudio, songVolume);
   });
-  console.log(riddleAudio.currentTime, riddleBlockMinute, riddleBlockSeconds)
+  
 }
 
 function updateRiddleAudioTime() {
@@ -316,7 +316,7 @@ function addHandlersGameAudioElements() {
   let gameBoxTotalTime = document.querySelector('.game__total-time');
   let gameAudioDecorated = audioPlayer.defeniteAudioDecorated(audio);
   let gameVolume = document.querySelector('.game__volume')
-  console.log(gameBoxCurrentTime, gameBoxTotalTime)
+ 
   if (!audio && btnPlay) return
   btnPlay.addEventListener('click', () => {
     gamePlayBtnHanlder(audio, btnPlay)
@@ -339,7 +339,7 @@ function addHandlersGameAudioElements() {
   });
   if (gameVolume) {
     gameVolume.addEventListener('input', () => {
-      console.log(gameVolume.value)
+
       let songVolume = gameVolume.value;
       audioPlayer.settingVolume(audio, songVolume);
     })
@@ -347,7 +347,7 @@ function addHandlersGameAudioElements() {
 }
 
 function gamePlayBtnHanlder(audio, btnPlay) {
-  console.log(45678)
+ 
   audioPlayer.switchPlaySinginBird(audio, btnPlay);
 }
 
