@@ -107,7 +107,7 @@ function windowLoadHandler() {
     let audioDecorated = riddleAudioPlayer.defeniteAudioDecorated(riddleAudio);
     riddleAudioPlayer.movingRiddleAudioDecorated(riddleAudio, audioDecorated)
   })
-  riddleAudio.addEventListener('canplay', () => {
+  riddleAudio.addEventListener('loadedmetadata', () => {
     const audioWrapper = document.querySelector('.riddle__audio-box');
     riddleAudioPlayer.riddleOffLoaderAduio(audioWrapper)
     let audioDecorated = riddleAudioPlayer.defeniteAudioDecorated(riddleAudio);
