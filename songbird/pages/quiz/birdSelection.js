@@ -258,7 +258,7 @@ function updateRiddleAudio() {
   let riddleAudioVolume = document.querySelector('.riddle__volume');
 
   if (!riddleAudio) return
-  riddleAudio.addEventListener('canplay', () => {
+  riddleAudio.addEventListener('loadedmetadata', () => {
     audioPlayer.riddleOffLoaderAduio()
     let audioDecorated = audioPlayer.defeniteAudioDecorated(riddleAudio);
     audioDecorated.max = Math.ceil(riddleAudio.duration);
@@ -328,7 +328,7 @@ function addHandlersGameAudioElements() {
   gameAudioDecorated.addEventListener('input', () => {
     audioPlayer.movingRiddleAudioDecorated(audio, gameAudioDecorated)
   })
-  audio.addEventListener('canplay', () => {
+  audio.addEventListener('loadedmetadata', () => {
     const audioWrapper = document.querySelector('.game__audio-box');
     audioPlayer.riddleOffLoaderAduio(audioWrapper)
     let audioDecorated = audioPlayer.defeniteAudioDecorated(audio);
